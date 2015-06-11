@@ -63,22 +63,22 @@ func (f paramFiller) paramsStructAny(value interface{}, shape *api.Shape) string
 	case "boolean":
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
-			return fmt.Sprintf("aws.Boolean(%#v)", v.Interface())
+			return fmt.Sprintf("aws.BoolPtr(%#v)", v.Interface())
 		}
 	case "integer", "long":
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
-			return fmt.Sprintf("aws.Long(%v)", v.Interface())
+			return fmt.Sprintf("aws.Int64Ptr(%v)", v.Interface())
 		}
 	case "float", "double":
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
-			return fmt.Sprintf("aws.Double(%v)", v.Interface())
+			return fmt.Sprintf("aws.Float64Ptr(%v)", v.Interface())
 		}
 	case "timestamp":
 		v := reflect.Indirect(reflect.ValueOf(value))
 		if v.IsValid() {
-			return fmt.Sprintf("aws.Time(time.Unix(%d, 0))", int(v.Float()))
+			return fmt.Sprintf("aws.TimePtr(time.Unix(%d, 0))", int(v.Float()))
 		}
 	default:
 		panic("Unhandled type " + shape.Type)
