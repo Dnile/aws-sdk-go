@@ -1073,7 +1073,7 @@ func TestInputService1ProtocolTestURIParameterOnlyWithNoLocationNameCase1(t *tes
 	svc.Endpoint = "https://test"
 
 	input := &InputService1TestShapeInputShape{
-		PipelineId: aws.String("foo"),
+		PipelineId: aws.StringPtr("foo"),
 	}
 	req, _ := svc.InputService1TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -1094,7 +1094,7 @@ func TestInputService2ProtocolTestURIParameterOnlyWithLocationNameCase1(t *testi
 	svc.Endpoint = "https://test"
 
 	input := &InputService2TestShapeInputShape{
-		Foo: aws.String("bar"),
+		Foo: aws.StringPtr("bar"),
 	}
 	req, _ := svc.InputService2TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -1115,9 +1115,9 @@ func TestInputService3ProtocolTestURIParameterAndQuerystringParamsCase1(t *testi
 	svc.Endpoint = "https://test"
 
 	input := &InputService3TestShapeInputShape{
-		Ascending:  aws.String("true"),
-		PageToken:  aws.String("bar"),
-		PipelineId: aws.String("foo"),
+		Ascending:  aws.StringPtr("true"),
+		PageToken:  aws.StringPtr("bar"),
+		PipelineId: aws.StringPtr("foo"),
 	}
 	req, _ := svc.InputService3TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -1138,13 +1138,13 @@ func TestInputService4ProtocolTestURIParameterQuerystringParamsAndJSONBodyCase1(
 	svc.Endpoint = "https://test"
 
 	input := &InputService4TestShapeInputShape{
-		Ascending: aws.String("true"),
+		Ascending: aws.StringPtr("true"),
 		Config: &InputService4TestShapeStructType{
-			A: aws.String("one"),
-			B: aws.String("two"),
+			A: aws.StringPtr("one"),
+			B: aws.StringPtr("two"),
 		},
-		PageToken:  aws.String("bar"),
-		PipelineId: aws.String("foo"),
+		PageToken:  aws.StringPtr("bar"),
+		PipelineId: aws.StringPtr("foo"),
 	}
 	req, _ := svc.InputService4TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -1170,14 +1170,14 @@ func TestInputService5ProtocolTestURIParameterQuerystringParamsHeadersAndJSONBod
 	svc.Endpoint = "https://test"
 
 	input := &InputService5TestShapeInputShape{
-		Ascending: aws.String("true"),
-		Checksum:  aws.String("12345"),
+		Ascending: aws.StringPtr("true"),
+		Checksum:  aws.StringPtr("12345"),
 		Config: &InputService5TestShapeStructType{
-			A: aws.String("one"),
-			B: aws.String("two"),
+			A: aws.StringPtr("one"),
+			B: aws.StringPtr("two"),
 		},
-		PageToken:  aws.String("bar"),
-		PipelineId: aws.String("foo"),
+		PageToken:  aws.StringPtr("bar"),
+		PipelineId: aws.StringPtr("foo"),
 	}
 	req, _ := svc.InputService5TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -1205,8 +1205,8 @@ func TestInputService6ProtocolTestStreamingPayloadCase1(t *testing.T) {
 
 	input := &InputService6TestShapeInputShape{
 		Body:      aws.ReadSeekCloser(bytes.NewBufferString("contents")),
-		Checksum:  aws.String("foo"),
-		VaultName: aws.String("name"),
+		Checksum:  aws.StringPtr("foo"),
+		VaultName: aws.StringPtr("name"),
 	}
 	req, _ := svc.InputService6TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -1252,7 +1252,7 @@ func TestInputService7ProtocolTestOmitsNullQueryParamsButSerializesEmptyStringsC
 	svc.Endpoint = "https://test"
 
 	input := &InputService7TestShapeInputShape{
-		Foo: aws.String(""),
+		Foo: aws.StringPtr(""),
 	}
 	req, _ := svc.InputService7TestCaseOperation2Request(input)
 	r := req.HTTPRequest
@@ -1274,7 +1274,7 @@ func TestInputService8ProtocolTestRecursiveShapesCase1(t *testing.T) {
 
 	input := &InputService8TestShapeInputShape{
 		RecursiveStruct: &InputService8TestShapeRecursiveStructType{
-			NoRecurse: aws.String("foo"),
+			NoRecurse: aws.StringPtr("foo"),
 		},
 	}
 	req, _ := svc.InputService8TestCaseOperation1Request(input)
@@ -1303,7 +1303,7 @@ func TestInputService8ProtocolTestRecursiveShapesCase2(t *testing.T) {
 	input := &InputService8TestShapeInputShape{
 		RecursiveStruct: &InputService8TestShapeRecursiveStructType{
 			RecursiveStruct: &InputService8TestShapeRecursiveStructType{
-				NoRecurse: aws.String("foo"),
+				NoRecurse: aws.StringPtr("foo"),
 			},
 		},
 	}
@@ -1335,7 +1335,7 @@ func TestInputService8ProtocolTestRecursiveShapesCase3(t *testing.T) {
 			RecursiveStruct: &InputService8TestShapeRecursiveStructType{
 				RecursiveStruct: &InputService8TestShapeRecursiveStructType{
 					RecursiveStruct: &InputService8TestShapeRecursiveStructType{
-						NoRecurse: aws.String("foo"),
+						NoRecurse: aws.StringPtr("foo"),
 					},
 				},
 			},
@@ -1368,10 +1368,10 @@ func TestInputService8ProtocolTestRecursiveShapesCase4(t *testing.T) {
 		RecursiveStruct: &InputService8TestShapeRecursiveStructType{
 			RecursiveList: []*InputService8TestShapeRecursiveStructType{
 				{
-					NoRecurse: aws.String("foo"),
+					NoRecurse: aws.StringPtr("foo"),
 				},
 				{
-					NoRecurse: aws.String("bar"),
+					NoRecurse: aws.StringPtr("bar"),
 				},
 			},
 		},
@@ -1403,11 +1403,11 @@ func TestInputService8ProtocolTestRecursiveShapesCase5(t *testing.T) {
 		RecursiveStruct: &InputService8TestShapeRecursiveStructType{
 			RecursiveList: []*InputService8TestShapeRecursiveStructType{
 				{
-					NoRecurse: aws.String("foo"),
+					NoRecurse: aws.StringPtr("foo"),
 				},
 				{
 					RecursiveStruct: &InputService8TestShapeRecursiveStructType{
-						NoRecurse: aws.String("bar"),
+						NoRecurse: aws.StringPtr("bar"),
 					},
 				},
 			},
@@ -1440,10 +1440,10 @@ func TestInputService8ProtocolTestRecursiveShapesCase6(t *testing.T) {
 		RecursiveStruct: &InputService8TestShapeRecursiveStructType{
 			RecursiveMap: map[string]*InputService8TestShapeRecursiveStructType{
 				"bar": {
-					NoRecurse: aws.String("bar"),
+					NoRecurse: aws.StringPtr("bar"),
 				},
 				"foo": {
-					NoRecurse: aws.String("foo"),
+					NoRecurse: aws.StringPtr("foo"),
 				},
 			},
 		},
@@ -1472,7 +1472,7 @@ func TestInputService9ProtocolTestTimestampValuesCase1(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService9TestShapeInputShape{
-		TimeArg: aws.Time(time.Unix(1422172800, 0)),
+		TimeArg: aws.TimePtr(time.Unix(1422172800, 0)),
 	}
 	req, _ := svc.InputService9TestCaseOperation1Request(input)
 	r := req.HTTPRequest
@@ -1498,7 +1498,7 @@ func TestInputService9ProtocolTestTimestampValuesCase2(t *testing.T) {
 	svc.Endpoint = "https://test"
 
 	input := &InputService9TestShapeInputShape{
-		TimeArgInHeader: aws.Time(time.Unix(1422172800, 0)),
+		TimeArgInHeader: aws.TimePtr(time.Unix(1422172800, 0)),
 	}
 	req, _ := svc.InputService9TestCaseOperation2Request(input)
 	r := req.HTTPRequest
